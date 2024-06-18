@@ -18,7 +18,7 @@ spec:
       serviceAccountName: ocp-virt-app
       containers:
       - name: ocp-virt-app
-        image: quay.io/jkeam/openshift-virt-app@sha256:f0d60c7292b9868e8280f7537cd6aca428adb2bad8d0af0ce45f8dc10c7a1995
+        image: "quay.io/jkeam/openshift-virt-app@sha256:95a7623f0ae5e75417817d8ad588c1da43daaea947895dbed561edaff3e350a4"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -28,8 +28,8 @@ spec:
             httpHeaders:
             - name: Accept
               value: application/json
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 2
+          periodSeconds: 2
         readinessProbe:
           httpGet:
             path: /healthz
@@ -37,8 +37,8 @@ spec:
             httpHeaders:
             - name: Accept
               value: application/json
-          initialDelaySeconds: 10
-          periodSeconds: 10
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
 ---
 apiVersion: v1
