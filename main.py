@@ -31,6 +31,6 @@ def read_health():
     return {"status": "alive"}
 
 @app.get("/pods")
-def read_pods(item_id: int, q: Union[str, None] = None):
+def read_pods():
     v1 = client.CoreV1Api()
     return {"pods": get_pods(v1, 'jkeam')}

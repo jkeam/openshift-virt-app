@@ -18,7 +18,7 @@ spec:
       serviceAccountName: ocp-virt-app
       containers:
       - name: ocp-virt-app
-        image: quay.io/jkeam/openshift-virt-app
+        image: quay.io/jkeam/openshift-virt-app@sha256:f0d60c7292b9868e8280f7537cd6aca428adb2bad8d0af0ce45f8dc10c7a1995
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -39,3 +39,35 @@ spec:
               value: application/json
           initialDelaySeconds: 10
           periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ocp-virt-app
+  name: ocp-virt-app
+  namespace: jkeam
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ocp-virt-app
+  type: ClusterIP
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ocp-virt-app
+  namespace: jkeam
+spec:
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+  to:
+    name: ocp-virt-app
