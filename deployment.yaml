@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocp-virt-app
+  namespace: jkeam
+  labels:
+    app: ocp-virt-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocp-virt-app
+  template:
+    metadata:
+      labels:
+        app: ocp-virt-app
+    spec:
+      serviceAccountName: ocp-virt-app
+      containers:
+      - name: ocp-virt-app
+        image: quay.io/jkeam/openshift-virt-app
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            httpHeaders:
+            - name: Accept
+              value: application/json
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            httpHeaders:
+            - name: Accept
+              value: application/json
+          initialDelaySeconds: 10
+          periodSeconds: 10
