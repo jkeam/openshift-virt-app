@@ -35,7 +35,7 @@ def get_vms() -> list[dict[str, str]]:
         "disks": instance['spec']['domain']['devices']['disks'],
         "interfaces": instance['spec']['domain']['devices']['interfaces'],
         "machine_type": instance['spec']['domain']['machine']['type'],
-    }, instances.items))
+    }, instances['items']))
 
 
 @app.get("/")
@@ -51,5 +51,5 @@ def read_pods():
     return {"pods": get_pods('jkeam')}
 
 @app.get("/vms")
-def read_pods():
-    return {"pods": get_vms()}
+def read_vms():
+    return {"vms": get_vms()}
