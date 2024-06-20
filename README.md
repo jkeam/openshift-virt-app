@@ -25,7 +25,7 @@ cd api
 PYTHON_ENV=test python ./main.py
 ```
 
-## Deploy
+## Build for Deployment
 
 ### Frontend
 
