@@ -4,7 +4,6 @@ import {
 import Sidebar from './nav/Sidebar';
 import Header from './nav/Header';
 import ContentSkip from './nav/ContentSkip';
-import Breadcrumb from './nav/Breadcrumb';
 import Title from './common/Title';
 import Home from './Home';
 import "@patternfly/react-core/dist/styles/base.css";
@@ -16,7 +15,6 @@ function App({ children, title, subtitle }) {
   const pageSkipToContent = <ContentSkip pageId={pageId} />;
   const sidebar = <Sidebar />;
   const header = <Header />;
-  const breadcrumb = <Breadcrumb />;
   const titleComponent = <Title value={title} subtitle={subtitle} />;
   return (
     <Page
@@ -24,7 +22,6 @@ function App({ children, title, subtitle }) {
       sidebar={sidebar}
       isManagedSidebar
       skipToContent={pageSkipToContent}
-      breadcrumb={breadcrumb}
       mainContainerId={pageId}
       isBreadcrumbWidthLimited
       isBreadcrumbGrouped
