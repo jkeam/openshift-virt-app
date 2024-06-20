@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ocp-virt-app
+  name: ocp-virt-app-api
   namespace: jkeam
   labels:
-    app: ocp-virt-app
+    app: ocp-virt-app-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ocp-virt-app
+      app: ocp-virt-app-api
   template:
     metadata:
       labels:
-        app: ocp-virt-app
+        app: ocp-virt-app-api
     spec:
-      serviceAccountName: ocp-virt-app
+      serviceAccountName: ocp-virt-app-api
       containers:
-      - name: ocp-virt-app
-        image: "quay.io/jkeam/openshift-virt-app@sha256:d93ec6be354eed59890ecc7775a9035b3ba867e09a5357a3bf0d203df2799530"
+      - name: ocp-virt-app-api
+        image: "quay.io/jkeam/openshift-virt-app@sha256:2d9bd7bd79200d16b95700ac6ba8cbba8fb2161901931eecd0ece67871bd2f31"
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -45,8 +45,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: ocp-virt-app
-  name: ocp-virt-app
+    app: ocp-virt-app-api
+  name: ocp-virt-app-api
   namespace: jkeam
 spec:
   ports:
@@ -55,14 +55,14 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: ocp-virt-app
+    app: ocp-virt-app-api
   type: ClusterIP
 
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: ocp-virt-app
+  name: ocp-virt-app-api
   namespace: jkeam
 spec:
   port:
@@ -70,4 +70,4 @@ spec:
   tls:
     termination: edge
   to:
-    name: ocp-virt-app
+    name: ocp-virt-app-api
