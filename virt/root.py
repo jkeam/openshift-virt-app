@@ -6,6 +6,8 @@ from flask import (
 from werkzeug.exceptions import abort
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from virt.cluster import get_cluster
+
 bp = Blueprint('root', __name__)
 
 @bp.route('/', methods=(['GET']))

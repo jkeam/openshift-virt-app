@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_vite import Vite
 
 def create_app(test_config=None):
     # create and configure the app
@@ -22,6 +23,9 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from . import cluster
+    cluster.init_app(app)
+
     from . import api
     app.register_blueprint(api.bp)
 
@@ -29,4 +33,6 @@ def create_app(test_config=None):
     app.register_blueprint(root.bp)
     app.add_url_rule('/', endpoint='index')
 
+    vite = Vite()
+    vite.init_app(app)
     return app
