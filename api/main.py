@@ -1,10 +1,11 @@
 from kubernetes import client, config
 from typing import Union
 from fastapi import FastAPI
-# from os import environ
+from os import environ
 
 app = FastAPI()
-config.load_incluster_config()
+if environ.get("PYTHON_ENV", "PRODUCTION") == "PRODUCTION":
+    config.load_incluster_config()
 
 def list_all_pods(v1):
     print("Listing pods with their IPs:")

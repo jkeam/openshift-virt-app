@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/python-39
+FROM registry.access.redhat.com/ubi9/python-312
 
 # Upgrade pip
 RUN python3.9 -m pip install --upgrade pip
