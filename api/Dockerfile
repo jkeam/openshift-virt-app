@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi9/python-312
 
 # Upgrade pip
-RUN python3.9 -m pip install --upgrade pip
+RUN python3.12 -m pip install --upgrade pip
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
