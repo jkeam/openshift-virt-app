@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Card,
   CardBody,
@@ -5,12 +6,27 @@ import {
   GalleryItem,
   PageSection,
 } from '@patternfly/react-core';
-import Table from '../common/Table';
+import BasicTable from '../common/BasicTable';
+import {
+  fetchInitialVMs
+} from '../api.js'
 
 export default function Vm() {
+  const [vms, setVms] = useState(fetchInitialVMs);
+  const cols = ['Name', 'OS', 'CPUs', 'Memory', 'Storage'];
+  const rows = (item) => {
+    return [
+      item.name,
+      item.os,
+      item.cpus,
+      item.memory,
+      item.storage
+    ];
+  };
+
   return (
     <PageSection>
-      <Table />
+      <BasicTable caption="" data={vms} rows={rows} cols={cols} />
     </PageSection>
   );
 }
