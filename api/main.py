@@ -1,9 +1,18 @@
 from kubernetes import client, config
 from typing import Union
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from os import environ
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+);
+
 if environ.get("PYTHON_ENV", "PRODUCTION") == "PRODUCTION":
     config.load_incluster_config()
 
