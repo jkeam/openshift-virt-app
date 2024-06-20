@@ -24,14 +24,16 @@ export default function Vm() {
     };
   }, []);
 
-  const cols = ['Name', 'OS', 'CPUs', 'Memory', 'Storage'];
+  const cols = ['Name', 'OS', 'CPUs', 'Memory', 'Storage', 'Network'];
   const rows = (item) => {
+
     return [
       item.name,
       item.os,
-      item.cpus,
+      item.cpu,
       item.memory,
-      item.storage
+      (item.disks || []).map(i => i.name).join(', '),
+      (item.interfaces || []).map(i => `${i.name}(${i.model})`).join(', ')
     ];
   };
 
