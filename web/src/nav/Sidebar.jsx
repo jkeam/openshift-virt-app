@@ -13,10 +13,10 @@ import {
 } from '@patternfly/react-core';
 
 export default function Sidebar() {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const route = useLocation();
   const mapping = ['/', '/vms', '/storages', '/networks'];
-  const onSelect = ({ itemId }) => history.push(mapping[itemId]);
+  const onSelect = ({ itemId }) => navigate(mapping[itemId]);
   const pageNav = (
     <Nav onSelect={onSelect} aria-label="Nav">
       <NavList>
