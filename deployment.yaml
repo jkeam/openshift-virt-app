@@ -18,7 +18,7 @@ spec:
       serviceAccountName: ocp-virt-app
       containers:
       - name: ocp-virt-app
-        image: "quay.io/jkeam/openshift-virt-app@sha256:59bd81bb9af2cd27d23b507a099abd49d06108adf084de92f59910f167321343"
+        image: "quay.io/jkeam/openshift-virt-app@sha256:1ba313a5b59cbed38a52946549b4134851886ed4a0e894f21623ce75c7b01bc1"
         ports:
         - containerPort: 8080
         livenessProbe:
