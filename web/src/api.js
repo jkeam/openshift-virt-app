@@ -1,7 +1,8 @@
 const API_BASE_URL = 'ocp-virt-app-api-jkeam.apps.tacos.dota-lab.iad.redhat.com';
 export const fetchInitialVMs = async() => {
   const response = await fetch(`https://${API_BASE_URL}/vms`);
-  return await response.json();
+  const resp = await response.json();
+  return resp['vms'];
   // return [
   //   { id: 1, name: 'one', os: 'two', cpus: 'three', memory: 'four', storage: 'five' },
   //   { id: 2, name: 'one - 2', os: null, cpus: null, memory: 'four - 2', storage: 'five - 2' },
