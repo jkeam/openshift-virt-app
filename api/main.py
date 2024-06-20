@@ -27,7 +27,7 @@ def get_vms() -> list[dict[str, str]]:
     instances = client.CustomObjectsApi().list_cluster_custom_object(group="kubevirt.io", version="v1", plural="virtualmachineinstances")
 
     return list(map(lambda instance: {
-        "name": instance['metadata']['name']
+        "name": instance['metadata']['name'],
         "cpu": instance['spec']['domain']['cpu']['cores'],
         "memory": instance['spec']['domain']['memory']['guest'],
         "created_at": instance['metadata']['creationTimestamp'],
