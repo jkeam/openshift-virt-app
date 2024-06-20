@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocp-virt-app-web
+  namespace: jkeam
+  labels:
+    app: ocp-virt-app-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocp-virt-app-web
+  template:
+    metadata:
+      labels:
+        app: ocp-virt-app-web
+    spec:
+      serviceAccountName: ocp-virt-app
+      containers:
+      - name: ocp-virt-app-web
+        image: "quay.io/jkeam/openshift-virt-app-web@sha256:574e88b975a6ef606096256257bf89db7ea6badb8181bad725b5208339d50381"
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            httpHeaders:
+            - name: Accept
+              value: application/json
+          initialDelaySeconds: 2
+          periodSeconds: 2
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+            httpHeaders:
+            - name: Accept
+              value: application/json
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ocp-virt-app-web
+  name: ocp-virt-app-web
+  namespace: jkeam
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ocp-virt-app-web
+  type: ClusterIP
+
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ocp-virt-app-web
+  namespace: jkeam
+spec:
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+  to:
+    name: ocp-virt-app-web

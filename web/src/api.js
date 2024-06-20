@@ -1,4 +1,4 @@
-BASE_URL = 'ocp-virt-app-api';
+const BASE_URL = 'ocp-virt-app-api';
 
 export const fetchInitialVMs = async() => {
   const response = await fetch(`http://${BASE_URL}/vms`);
