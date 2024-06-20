@@ -1,9 +1,8 @@
-import fetch from 'node-fetch';
 BASE_URL = 'ocp-virt-app-api';
 
 export const fetchInitialVMs = async() => {
-  const response = await fetch(`http://${BASE_URL}/vms`)
-  return await response.json()
+  const response = await fetch(`http://${BASE_URL}/vms`);
+  return await response.json();
   // return [
   //   { id: 1, name: 'one', os: 'two', cpus: 'three', memory: 'four', storage: 'five' },
   //   { id: 2, name: 'one - 2', os: null, cpus: null, memory: 'four - 2', storage: 'five - 2' },
