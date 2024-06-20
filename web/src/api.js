@@ -1,6 +1,6 @@
+const API_BASE_URL = 'ocp-virt-app-api:8080';
 export const fetchInitialVMs = async() => {
-  const baseUrl = process.env.API_BASE_URL;
-  const response = await fetch(`http://${baseUrl}/vms`);
+  const response = await fetch(`http://${API_BASE_URL}/vms`);
   return await response.json();
   // return [
   //   { id: 1, name: 'one', os: 'two', cpus: 'three', memory: 'four', storage: 'five' },
