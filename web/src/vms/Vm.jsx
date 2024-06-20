@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardBody,
@@ -12,7 +12,18 @@ import {
 } from '../api.js'
 
 export default function Vm() {
-  const [vms, setVms] = useState(fetchInitialVMs);
+  const [vms, setVms] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const fetched = await fetchInitialVMs();
+      setVms(fetched);
+    })();
+
+    return () => {
+      // unmount
+    };
+  }, []);
+
   const cols = ['Name', 'OS', 'CPUs', 'Memory', 'Storage'];
   const rows = (item) => {
     return [
