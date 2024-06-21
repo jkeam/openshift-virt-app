@@ -39,6 +39,20 @@ app.get("/api/nodes", async (req, res) => {
   }
 });
 
+app.get("/api/storages", async (req, res) => {
+  try {
+    const url = `http://${API_BASE_URL}/storages`;
+    const options = {
+      method: 'GET'
+    };
+    const callResponse = await fetch(url, options);
+    const json = await callResponse.json();
+    res.json(json);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 ViteExpress.listen(app, 3000, () =>
   console.log("Server is listening on port 3000..."),
 );
