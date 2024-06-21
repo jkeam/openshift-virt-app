@@ -33,7 +33,7 @@ export default function Vm() {
       item.cpu,
       item.memory,
       (item.disks || []).map(i => i.name).join(', '),
-      (item.interfaces || []).map(i => `${i.name}(${i.model})`).join(', ')
+      (item.interfaces || []).map(i => `${i.name} (${i.model})`).join(', ')
     ];
   };
 
