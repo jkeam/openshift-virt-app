@@ -89,10 +89,9 @@ def get_storages() -> list[dict[str, str]]:
     data_volumes = api.list_cluster_custom_object(group="cdi.kubevirt.io", version="v1beta1", plural="datavolumes")
     return list(map(lambda dv: {
         "name": dv['metadata']['name'],
-        "vm": dv['metadata']['ownerReferences'][0]['name'],
-        "pvc": dv['spec']['source']['pvc']['name'],
-        "size": dv['spec']['storage']['resources']['requests']['storage'],
-        "storage_class": dv['spec']['storage']['storageClassName'],
+        "vm": dv['metadata'].get('ownerReferences'),
+        "source": dv['spec'].get('source'),
+        "storage": dv['spec'].get('storage'),
     }, data_volumes['items']))
 
 @app.get("/")
