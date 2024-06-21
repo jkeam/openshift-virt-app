@@ -56,6 +56,7 @@ def get_vms() -> list[dict[str, str]]:
             if dv:
                 dv_name = dv['name']
                 dv = data_volume_by_name[dv_name]
+                dv['name'] = dv_name
                 volumes.append(dv)
         volume_mapping_to_instance[instance_name] = volumes
 

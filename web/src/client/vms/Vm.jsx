@@ -26,13 +26,12 @@ export default function Vm() {
 
   const cols = ['Name', 'OS', 'CPUs', 'Memory', 'Storage', 'Network'];
   const rows = (item) => {
-
     return [
       item.name,
       item.os,
       item.cpu,
       item.memory,
-      (item.disks || []).map(i => i.name).join(', '),
+      (item.data_volumes || []).map(i => `${i.name} (${i['storage']['resources']['requests']['storage']})`).join(', '),
       (item.interfaces || []).map(i => `${i.name} (${i.model})`).join(', ')
     ];
   };
