@@ -18,13 +18,16 @@ spec:
       serviceAccountName: ocp-virt-app
       containers:
       - name: ocp-virt-app-web
-        image: "quay.io/jkeam/openshift-virt-app-web@sha256:c763354e818b45fc81987f0b2d7b8acc2a340352f5f7d6f8c1849f51335a05fe"
+        image: "quay.io/jkeam/openshift-virt-app-web@sha256:cd1df5ed4c3ba79dab7f123d9f0498b4a6e755e8fe6fc7f39678cb652e54b298"
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
+        env:
+        - name: API_BASE_URL
+          value: "ocp-virt-app-api:8080"
         livenessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 3000
             httpHeaders:
             - name: Accept
               value: application/json
@@ -33,7 +36,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 3000
             httpHeaders:
             - name: Accept
               value: application/json
@@ -50,10 +53,10 @@ metadata:
   namespace: jkeam
 spec:
   ports:
-  - name: 8080-8080
-    port: 8080
+  - name: 3000-3000
+    port: 3000
     protocol: TCP
-    targetPort: 8080
+    targetPort: 3000
   selector:
     app: ocp-virt-app-web
   type: ClusterIP
@@ -66,7 +69,7 @@ metadata:
   namespace: jkeam
 spec:
   port:
-    targetPort: 8080
+    targetPort: 3000
   tls:
     termination: edge
   to:

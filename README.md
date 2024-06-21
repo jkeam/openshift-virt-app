@@ -31,18 +31,12 @@ PYTHON_ENV=test python ./main.py
 
 ```shell
 cd web
-npm run clean
-npm run build
-# now just serve vite/dist/index.html, can preview with
-npm run preview
-podman build -t quay.io/jkeam/openshift-virt-app-web -f ./Dockerfile .
-podman push quay.io/jkeam/openshift-virt-app-web
+./build.sh
 ```
 
 ### Backend
 
 ```shell
 cd api
-podman build -t quay.io/jkeam/openshift-virt-app-api -f ./Dockerfile .
-podman push quay.io/jkeam/openshift-virt-app-api
+./build.sh
 ```
