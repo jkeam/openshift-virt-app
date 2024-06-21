@@ -52,9 +52,11 @@ def get_vms() -> list[dict[str, str]]:
         instance_name = instance['metadata']['name']
         volumes = []
         for vol in instance['spec']['volumes']:
-            dv_name = vol['dataVolume']['name']
-            dv = data_volume_by_name[dv_name]
-            volumes.append(dv)
+            dv = vol.get('dataVolume', None)
+            if dv:
+                dv_name = dv['name']
+                dv = data_volume_by_name[dv_name]
+                volumes.append(dv)
         volume_mapping_to_instance[instance_name] = volumes
 
     return list(map(lambda instance: {
