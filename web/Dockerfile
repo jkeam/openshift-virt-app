@@ -9,9 +9,9 @@ RUN npm install
 
 # app files
 COPY index.html vite.config.js .
-COPY dist dist
-COPY public public
 COPY ./src/server/main.js .
+COPY public public
+COPY dist dist
 RUN chown -R 1001:0 .
 
 # setup to run
