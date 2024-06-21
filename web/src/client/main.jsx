@@ -14,7 +14,7 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App title="Dashboard" subtitle="Home"><Home /></App>,
+    element: <App title="Home" subtitle="Dashboard"><Home /></App>,
   }, {
     path: "/nodes",
     element: <App title="Nodes" subtitle="Node Detail"><Node /></App>,
