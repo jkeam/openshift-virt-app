@@ -1,5 +1,11 @@
-export const fetchInitialVMs = async() => {
+export const fetchVms = async() => {
   const response = await fetch('/api/vms');
   const resp = await response.json();
   return resp['vms'];
+}
+
+export const fetchNodes = async() => {
+  const response = await fetch('/api/nodes');
+  const resp = await response.json();
+  return resp['nodes'];
 }

@@ -1,9 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import Home from './Home.jsx'
-import Vm from './vms/Vm.jsx'
-import Example from './Example.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import Home from './Home.jsx';
+import Vm from './vms/Vm.jsx';
+import Node from './nodes/Node.jsx';
+import Example from './Example.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     element: <App title="Dashboard" subtitle="Home"><Home /></App>,
   }, {
     path: "/nodes",
-    element: <App title="Nodes" subtitle="Node Detail"><Vm /></App>,
+    element: <App title="Nodes" subtitle="Node Detail"><Node /></App>,
   }, {
     path: "/vms",
     element: <App title="Virtual Machines" subtitle="VM Detail"><Vm /></App>,

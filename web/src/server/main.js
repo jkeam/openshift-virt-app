@@ -21,7 +21,21 @@ app.get("/api/vms", async (req, res) => {
     const json = await callResponse.json();
     res.json(json);
   } catch (err) {
-    console.log(err);
+    console.error(err);
+  }
+});
+
+app.get("/api/nodes", async (req, res) => {
+  try {
+    const url = `http://${API_BASE_URL}/nodes`;
+    const options = {
+      method: 'GET'
+    };
+    const callResponse = await fetch(url, options);
+    const json = await callResponse.json();
+    res.json(json);
+  } catch (err) {
+    console.error(err);
   }
 });
 
