@@ -15,6 +15,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <App title="Dashboard" subtitle="Home"><Home /></App>,
   }, {
+    path: "/nodes",
+    element: <App title="Nodes" subtitle="Node Detail"><Vm /></App>,
+  }, {
     path: "/vms",
     element: <App title="Virtual Machines" subtitle="VM Detail"><Vm /></App>,
   }, {
