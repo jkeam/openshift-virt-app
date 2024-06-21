@@ -23,13 +23,16 @@ export default function Sidebar() {
         <NavItem itemId={0} isActive={route.pathname === mapping[0]} to="/">
           Home
         </NavItem>
-        <NavItem itemId={1} isActive={route.pathname === mapping[1]} to="/vms">
+        <NavItem itemId={1} isActive={route.pathname === mapping[1]} to="/nodes">
+          Nodes
+        </NavItem>
+        <NavItem itemId={2} isActive={route.pathname === mapping[2]} to="/vms">
           Virtual Machines
         </NavItem>
-        <NavItem itemId={2} isActive={route.pathname === mapping[2]} to="/storages">
+        <NavItem itemId={3} isActive={route.pathname === mapping[3]} to="/storages">
           Storage
         </NavItem>
-        <NavItem itemId={3} isActive={route.pathname === mapping[3]} to="/networks">
+        <NavItem itemId={4} isActive={route.pathname === mapping[4]} to="/networks">
           Network
         </NavItem>
       </NavList>
