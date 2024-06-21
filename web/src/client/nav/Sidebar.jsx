@@ -15,7 +15,7 @@ import {
 export default function Sidebar() {
   const navigate = useNavigate();
   const route = useLocation();
-  const mapping = ['/', '/vms', '/storages', '/networks'];
+  const mapping = ['/', '/nodes', '/vms', '/storages', '/networks'];
   const onSelect = ({ itemId }) => navigate(mapping[itemId]);
   const pageNav = (
     <Nav onSelect={onSelect} aria-label="Nav">

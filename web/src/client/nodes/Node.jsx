@@ -28,7 +28,7 @@ export default function Node() {
 
   return (
     <PageSection>
-      <BasicTable caption="" data={vms} rows={rows} cols={cols} />
+      <BasicTable caption="" data={nodes} rows={rows} cols={cols} />
     </PageSection>
   );
 }
