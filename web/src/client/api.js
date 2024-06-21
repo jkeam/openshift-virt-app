@@ -9,3 +9,9 @@ export const fetchNodes = async() => {
   const resp = await response.json();
   return resp['nodes'];
 }
+
+export const fetchStorages = async() => {
+  const response = await fetch('/api/storages');
+  const resp = await response.json();
+  return resp['storages'];
+}
