@@ -29,7 +29,7 @@ export default function Storage() {
 
   return (
     <PageSection>
-      <BasicTable caption="" data={vms} rows={rows} cols={cols} />
+      <BasicTable caption="" data={storages} rows={rows} cols={cols} />
     </PageSection>
   );
 }
