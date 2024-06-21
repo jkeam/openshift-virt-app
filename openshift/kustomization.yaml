@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: jkeam
+
+images:
+- name: quay.io/jkeam/openshift-virt-app-api
+  digest: sha256:52847f455f75562504be3b55e7ef18185f058ea7c12c789e825e280cf760cf02
+- name: quay.io/jkeam/openshift-virt-app-web
+  digest: sha256:c514eeb3a5fd44060a4382552be199d4a26f419df250644fd2f550f907b0ed5a
+
+resources:
+  - deployment-api.yaml
+  - deployment-web.yaml
