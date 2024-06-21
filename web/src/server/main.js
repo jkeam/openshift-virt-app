@@ -17,8 +17,8 @@ app.get("/api/vms", async (req, res) => {
     const options = {
       method: 'GET'
     };
-    const res = await fetch(url, options);
-    const json = await res.json();
+    const callResponse = await fetch(url, options);
+    const json = await callResponse.json();
     res.json(json);
   } catch (err) {
     console.log(err);
