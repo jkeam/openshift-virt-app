@@ -72,6 +72,17 @@ def get_vms() -> list[dict[str, str]]:
         "machine_type": instance['spec']['domain']['machine']['type'],
     }, instances['items']))
 
+def get_nodes() -> list[dict[str, str]]:
+    print("get_nodes")
+    api = client.CoreV1Api()
+    nodes = api.list_node()
+    list(map(lambda node: {
+        "name": node.metadata.name,
+        "cpu": node.status.capacity['cpu'],
+        "memory": node.status.capacity['memory'],
+        "host_ip": list(filter(lambda address: (address.type == 'InternalIP'), node.status.addresses))[0].address
+    }, nodes.items))
+
 
 @app.get("/")
 def read_root():
@@ -88,3 +99,7 @@ def read_pods():
 @app.get("/vms")
 def read_vms():
     return {"vms": get_vms()}
+
+@app.get("/nodes")
+def read_nodes():
+    return {"nodes": get_nodes()}
