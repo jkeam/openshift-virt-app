@@ -76,13 +76,24 @@ def get_nodes() -> list[dict[str, str]]:
     print("get_nodes")
     api = client.CoreV1Api()
     nodes = api.list_node()
-    list(map(lambda node: {
+    return list(map(lambda node: {
         "name": node.metadata.name,
         "cpu": node.status.capacity['cpu'],
         "memory": node.status.capacity['memory'],
         "host_ip": list(filter(lambda address: (address.type == 'InternalIP'), node.status.addresses))[0].address
     }, nodes.items))
 
+def get_storages() -> list[dict[str, str]]:
+    print("get_storages")
+    api = client.CustomObjectsApi()
+    data_volumes = api.list_cluster_custom_object(group="cdi.kubevirt.io", version="v1beta1", plural="datavolumes")
+    return list(map(lambda dv: {
+        "name": dv['metadata']['name'],
+        "vm": dv['metadata']['ownerReferences'][0]['name'],
+        "pvc": dv['spec']['source']['pvc']['name'],
+        "size": dv['spec']['storage']['resources']['requests']['storage'],
+        "storage_class": dv['spec']['storage']['storageClassName'],
+    }, data_volumes['items']))
 
 @app.get("/")
 def read_root():
@@ -103,3 +114,7 @@ def read_vms():
 @app.get("/nodes")
 def read_nodes():
     return {"nodes": get_nodes()}
+
+@app.get("/storages")
+def read_storages():
+    return {"storages": get_storages()}
