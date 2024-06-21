@@ -7,10 +7,6 @@ const API_BASE_URL = process.env.API_BASE_URL;
 
 const app = express();
 
-app.get("/healthz", (req, res) => {
-  res.json({"status": "alive"});
-});
-
 app.get("/api/healthz", (req, res) => {
   res.json({"status": "alive"});
 });

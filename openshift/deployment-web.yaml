@@ -26,7 +26,7 @@ spec:
           value: "ocp-virt-app-api:8080"
         livenessProbe:
           httpGet:
-            path: /
+            path: /api/healthz
             port: 3000
             httpHeaders:
             - name: Accept
@@ -35,7 +35,7 @@ spec:
           periodSeconds: 2
         readinessProbe:
           httpGet:
-            path: /
+            path: /api/healthz
             port: 3000
             httpHeaders:
             - name: Accept
