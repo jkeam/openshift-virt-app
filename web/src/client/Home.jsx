@@ -1,12 +1,9 @@
-import {
-  PageSection,
-} from '@patternfly/react-core';
-import Gallery from './common/Gallery';
+import { PageSection } from '@patternfly/react-core';
 
 export default function Home() {
   return (
     <PageSection>
-      <Gallery />
+      Welcome!  Take a look around.
     </PageSection>
   );
 }
