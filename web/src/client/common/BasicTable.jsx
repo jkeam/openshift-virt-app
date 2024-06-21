@@ -18,11 +18,11 @@ export default function BasicTable({ caption, data, rows, cols }) {
         <Caption>{caption}</Caption>
         <Thead>
           <Tr>
-            { cols.map((item) => (<Th>{item}</Th>)) }
+            { (cols || []).map((item) => (<Th>{item}</Th>)) }
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((item) => (
+          {(data || []).map((item) => (
             <Tr key={item.id}>
               {rows(item).map((row, i) => (<Td dataLabel={cols[i]}>{row}</Td>))}
             </Tr>
