@@ -6,7 +6,6 @@ import Vm from './vms/Vm.jsx';
 import Node from './nodes/Node.jsx';
 import Storage from './storages/Storage.jsx';
 import Network from './networks/Network.jsx';
-import Example from './Example.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -29,9 +28,6 @@ const router = createBrowserRouter([
   }, {
     path: "/networks",
     element: <App title="Network" subtitle="Network Detail"><Network /></App>,
-  }, {
-    path: "/example",
-    element: <Example />
   },
 ]);
 
