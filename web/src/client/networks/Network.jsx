@@ -25,7 +25,7 @@ export default function Network() {
           });
         }
       }
-      setVms(fetched);
+      setInterfaces(fetchedInterfaces);
     })();
 
     return () => {
