@@ -5,6 +5,7 @@ import Home from './Home.jsx';
 import Vm from './vms/Vm.jsx';
 import Node from './nodes/Node.jsx';
 import Storage from './storages/Storage.jsx';
+import Network from './networks/Network.jsx';
 import Example from './Example.jsx';
 import {
   createBrowserRouter,
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
     element: <App title="Storage" subtitle="Storage Detail"><Storage /></App>,
   }, {
     path: "/networks",
-    element: <App title="Network" subtitle="Network Detail"><Vm /></App>,
+    element: <App title="Network" subtitle="Network Detail"><Network /></App>,
   }, {
     path: "/example",
     element: <Example />
