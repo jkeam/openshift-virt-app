@@ -7,7 +7,7 @@ images:
 - name: quay.io/jkeam/openshift-virt-app-api
   digest: sha256:52847f455f75562504be3b55e7ef18185f058ea7c12c789e825e280cf760cf02
 - name: quay.io/jkeam/openshift-virt-app-web
-  digest: sha256:bf2982d9b4aabed16bf37d7bb45743082d823d3d6587a2892422be628dc64616
+  digest: sha256:2f96cae287f6f56f3a8a799fd2e266ae492340ca1cc0c4f5cdb8088eedf362bb
 
 resources:
   - rbac.yaml
