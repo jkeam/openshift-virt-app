@@ -9,9 +9,7 @@ import {
   Td
 } from '@patternfly/react-table';
 
-
 export default function BasicTable({ caption, data, rows, cols }) {
-
   return (
     <React.Fragment>
       <PTable aria-label="Basic table">
@@ -24,7 +22,7 @@ export default function BasicTable({ caption, data, rows, cols }) {
         <Tbody>
           {(data || []).map((item, i) => (
             <Tr key={i}>
-              {rows(item).map((row, i) => (<Td dataLabel={cols[i]} key={i}>{row}</Td>))}
+              {rows(item).map((row, i) => (<Td dataLabel={cols[i]} key={i} modifier="breakWord">{row}</Td>))}
             </Tr>
           ))}
         </Tbody>
