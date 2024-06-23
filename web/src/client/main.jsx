@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import Home from './Home.jsx';
-import Vm from './vms/Vm.jsx';
-import Node from './nodes/Node.jsx';
-import Storage from './storages/Storage.jsx';
-import Network from './networks/Network.jsx';
+import Home from './components/Home.jsx';
+import Vm from './components/vms/Vm.jsx';
+import Node from './components/nodes/Node.jsx';
+import Storage from './components/storages/Storage.jsx';
+import Network from './components/networks/Network.jsx';
 import {
   createBrowserRouter,
   RouterProvider,

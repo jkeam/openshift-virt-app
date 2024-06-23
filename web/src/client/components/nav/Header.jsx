@@ -8,7 +8,7 @@ import {
   PageToggleButton
 } from '@patternfly/react-core';
 import BarsIcon from '@patternfly/react-icons/dist/esm/icons/bars-icon';
-import logo from '../logo.svg';
+import logo from '../../assets/logo.svg';
 
 export default function Header() {
   return (

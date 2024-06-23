@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { fetchStorages } from '../api.js'
+import { fetchStorages } from '../../utils/api.js'
 import { path } from 'ramda';
 
 export default function Storage() {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { fetchNodes } from '../api.js'
+import { fetchNodes } from '../../utils/api.js'
 
 export default function Node() {
   const [nodes, setNodes] = useState([]);

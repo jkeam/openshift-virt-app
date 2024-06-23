@@ -1,11 +1,10 @@
 import {
   Page,
 } from '@patternfly/react-core';
-import Sidebar from './nav/Sidebar';
-import Header from './nav/Header';
-import ContentSkip from './nav/ContentSkip';
-import Title from './common/Title';
-import Home from './Home';
+import Sidebar from './components/nav/Sidebar';
+import Header from './components/nav/Header';
+import ContentSkip from './components/nav/ContentSkip';
+import Title from './components/common/Title';
 import "@patternfly/react-core/dist/styles/base.css";
 import './fonts.css'
 import './App.css'

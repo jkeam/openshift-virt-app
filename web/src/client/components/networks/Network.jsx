@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { fetchVms } from '../api.js'
+import { fetchVms } from '../../utils/api.js'
 
 export default function Network() {
   const [interfaces, setInterfaces] = useState([]);
