@@ -1,31 +1,14 @@
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { fetchVms } from '../../utils/api.js'
+import { getNetworks } from '../../utils/store.js'
 
 export default function Network() {
   const [interfaces, setInterfaces] = useState([]);
   useEffect(() => {
     (async () => {
-      const fetched = await fetchVms();
-      const fetchedInterfaces = [];
-      for (const vm of fetched) {
-        const vmName = vm.name;
-        for (const inter of vm.interfaces) {
-          let ports = '';
-          if (inter.ports) {
-            ports = inter.ports.map(port => `${port.name} ${port.port} (${port.protocol})`).join(', ');
-          }
-          fetchedInterfaces.push({
-            vmName,
-            name: inter.name,
-            model: inter.model,
-            macAddress: inter.macAddress,
-            ports
-          });
-        }
-      }
-      setInterfaces(fetchedInterfaces);
+      const fetched = await getNetworks();
+      setInterfaces(fetched);
     })();
 
     return () => {

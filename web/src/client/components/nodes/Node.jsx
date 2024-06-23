@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { fetchNodes } from '../../utils/api.js'
+import { getNodes } from '../../utils/store.js'
 
 export default function Node() {
   const [nodes, setNodes] = useState([]);
   useEffect(() => {
     (async () => {
-      const fetched = await fetchNodes();
+      const fetched = await getNodes();
       setNodes(fetched);
     })();
 
@@ -22,7 +22,7 @@ export default function Node() {
       item.name,
       item.cpu,
       item.memory,
-      item.host_ip
+      item.hostIp,
     ];
   };
 

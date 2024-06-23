@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { fetchVms } from '../../utils/api.js'
+import { getVms } from '../../utils/store.js'
 
 export default function Vm() {
   const [vms, setVms] = useState([]);
   useEffect(() => {
     (async () => {
-      const fetched = await fetchVms();
+      const fetched = await getVms();
       setVms(fetched);
     })();
 
@@ -23,8 +23,8 @@ export default function Vm() {
       item.os,
       item.cpu,
       item.memory,
-      (item.data_volumes || []).map(i => `${i.name} (${i['storage']['resources']['requests']['storage']})`).join(', '),
-      (item.interfaces || []).map(i => `${i.name} (${i.model})`).join(', ')
+      item.dataVolumes,
+      item.interfaces,
     ];
   };
 
