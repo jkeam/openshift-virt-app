@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
 import { getNetworks, networksAtom } from '../../utils/store.js'
