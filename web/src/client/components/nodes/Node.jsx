@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { getNodes } from '../../utils/store.js'
+import { getNodes, nodesAtom } from '../../utils/store.js'
 
 export default function Node() {
-  const [nodes, setNodes] = useState([]);
+  const [nodes, setNodes] = useAtom(nodesAtom);
   useEffect(() => {
     (async () => {
       const fetched = await getNodes();

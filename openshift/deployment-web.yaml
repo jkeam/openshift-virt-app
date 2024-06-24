@@ -23,7 +23,7 @@ spec:
         - containerPort: 3000
         env:
         - name: API_BASE_URL
-          value: "ocp-virt-app-api:8080"
+          value: "http://ocp-virt-app-api:8080"
         livenessProbe:
           httpGet:
             path: /api/healthz

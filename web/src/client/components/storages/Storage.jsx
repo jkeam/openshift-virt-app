@@ -1,11 +1,12 @@
+import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { getStorages } from '../../utils/store.js'
+import { getStorages, storagesAtom } from '../../utils/store.js'
 import { path } from 'ramda';
 
 export default function Storage() {
-  const [storages, setStorages] = useState([]);
+  const [storages, setStorages] = useAtom(storagesAtom);
   useEffect(() => {
     (async () => {
       const fetched = await getStorages();

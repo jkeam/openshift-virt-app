@@ -1,10 +1,11 @@
+import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { getNetworks } from '../../utils/store.js'
+import { getNetworks, networksAtom } from '../../utils/store.js'
 
 export default function Network() {
-  const [interfaces, setInterfaces] = useState([]);
+  const [interfaces, setInterfaces] = useAtom(networksAtom);
   useEffect(() => {
     (async () => {
       const fetched = await getNetworks();

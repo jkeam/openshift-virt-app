@@ -1,10 +1,11 @@
+import { useAtom } from 'jotai';
 import { useState, useEffect } from 'react';
 import { PageSection } from '@patternfly/react-core';
 import BasicTable from '../common/BasicTable';
-import { getVms } from '../../utils/store.js'
+import { getVms, vmsAtom } from '../../utils/store.js'
 
 export default function Vm() {
-  const [vms, setVms] = useState([]);
+  const [vms, setVms] = useAtom(vmsAtom);
   useEffect(() => {
     (async () => {
       const fetched = await getVms();

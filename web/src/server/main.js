@@ -13,7 +13,7 @@ app.get("/api/healthz", (req, res) => {
 
 app.get("/api/vms", async (req, res) => {
   try {
-    const url = `http://${API_BASE_URL}/vms`;
+    const url = `${API_BASE_URL}/vms`;
     const options = {
       method: 'GET'
     };
@@ -27,7 +27,7 @@ app.get("/api/vms", async (req, res) => {
 
 app.get("/api/nodes", async (req, res) => {
   try {
-    const url = `http://${API_BASE_URL}/nodes`;
+    const url = `${API_BASE_URL}/nodes`;
     const options = {
       method: 'GET'
     };
@@ -41,7 +41,7 @@ app.get("/api/nodes", async (req, res) => {
 
 app.get("/api/storages", async (req, res) => {
   try {
-    const url = `http://${API_BASE_URL}/storages`;
+    const url = `${API_BASE_URL}/storages`;
     const options = {
       method: 'GET'
     };
