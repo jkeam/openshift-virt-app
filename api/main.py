@@ -3,7 +3,10 @@ from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from os import environ
+from sys import stdout
+from logging import getLogger, DEBUG, StreamHandler, Formatter
 
+# setup app
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -13,19 +16,27 @@ app.add_middleware(
     allow_headers=["*"],
 );
 
+# setup logger
+logger = getLogger(__name__)
+logger.setLevel(DEBUG)
+stream_handler = StreamHandler(stdout)
+stream_handler.setFormatter(Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
+logger.addHandler(stream_handler)
+logger.info("API is starting up")
+
 if environ.get("PYTHON_ENV", "PRODUCTION") == "PRODUCTION":
-    print("loaded auth")
+    logger.info("loaded auth")
     config.load_incluster_config()
 
 def list_all_pods():
-    print("list_all_pods")
+    logger.info("list_all_pods")
     v1 = client.CoreV1Api()
     ret = v1.list_pod_for_all_namespaces(watch=False)
     for i in ret.items:
-        print(f"{i.status.pod_ip}\t{i.metadata.namespace}\t{i.metadata.name}")
+        logger.debug(f"{i.status.pod_ip}\t{i.metadata.namespace}\t{i.metadata.name}")
 
-def get_pods(namespace:str) -> list[dict[str, str]]:
-    print("get_pods")
+def fetch_pods(namespace:str) -> list[dict[str, str]]:
+    logger.info("fetch_pods")
     v1 = client.CoreV1Api()
     pod_list = v1.list_namespaced_pod(namespace)
     return list(map(lambda pod: {
@@ -34,8 +45,8 @@ def get_pods(namespace:str) -> list[dict[str, str]]:
         "ip": pod.status.pod_ip
     }, pod_list.items))
 
-def get_vms() -> list[dict[str, str]]:
-    print("get_vms")
+def fetch_vms() -> list[dict[str, str]]:
+    logger.info("fetch_vms")
     api = client.CustomObjectsApi()
     instances = api.list_cluster_custom_object(group="kubevirt.io", version="v1", plural="virtualmachineinstances")
 
@@ -72,8 +83,8 @@ def get_vms() -> list[dict[str, str]]:
         "machine_type": instance['spec']['domain']['machine']['type'],
     }, instances['items']))
 
-def get_nodes() -> list[dict[str, str]]:
-    print("get_nodes")
+def fetch_nodes() -> list[dict[str, str]]:
+    logger.info("fetch_nodes")
     api = client.CoreV1Api()
     nodes = api.list_node()
     return list(map(lambda node: {
@@ -83,8 +94,8 @@ def get_nodes() -> list[dict[str, str]]:
         "host_ip": list(filter(lambda address: (address.type == 'InternalIP'), node.status.addresses))[0].address
     }, nodes.items))
 
-def get_storages() -> list[dict[str, str]]:
-    print("get_storages")
+def fetch_storages() -> list[dict[str, str]]:
+    logger.info("fetch_storages")
     api = client.CustomObjectsApi()
     data_volumes = api.list_cluster_custom_object(group="cdi.kubevirt.io", version="v1beta1", plural="datavolumes")
     return list(map(lambda dv: {
@@ -95,25 +106,25 @@ def get_storages() -> list[dict[str, str]]:
     }, data_volumes['items']))
 
 @app.get("/")
-def read_root():
+def get_root():
     return {"message": "welcome to the best api"}
 
 @app.get("/healthz")
-def read_health():
+def get_health():
     return {"status": "alive"}
 
 @app.get("/pods")
-def read_pods():
-    return {"pods": get_pods('jkeam')}
+def get_pods():
+    return {"pods": fetch_pods('jkeam')}
 
 @app.get("/vms")
-def read_vms():
-    return {"vms": get_vms()}
+def get_vms():
+    return {"vms": fetch_vms()}
 
 @app.get("/nodes")
-def read_nodes():
-    return {"nodes": get_nodes()}
+def get_nodes():
+    return {"nodes": fetch_nodes()}
 
 @app.get("/storages")
-def read_storages():
-    return {"storages": get_storages()}
+def get_storages():
+    return {"storages": fetch_storages()}
