@@ -41,6 +41,7 @@ def fetch_pods(namespace:str) -> list[dict[str, str]]:
     pod_list = v1.list_namespaced_pod(namespace)
     return list(map(lambda pod: {
         "name": pod.metadata.name,
+        "namespace": pod.metadata.namespace,
         "phase": pod.status.phase,
         "ip": pod.status.pod_ip
     }, pod_list.items))
@@ -81,6 +82,7 @@ def fetch_vms() -> list[dict[str, str]]:
 
     return list(map(lambda instance: {
         "name": instance['metadata']['name'],
+        "namespace": instance['metadata']['namespace'],
         "cpu": instance['spec']['domain']['cpu']['cores'],
         "memory": instance['spec']['domain']['memory']['guest'],
         "created_at": instance['metadata']['creationTimestamp'],
@@ -108,6 +110,7 @@ def fetch_storages() -> list[dict[str, str]]:
     data_volumes = api.list_cluster_custom_object(group="cdi.kubevirt.io", version="v1beta1", plural="datavolumes")
     return list(map(lambda dv: {
         "name": dv['metadata']['name'],
+        "namespace": dv['metadata']['namespace'],
         "vm": dv['metadata'].get('ownerReferences'),
         "source": dv['spec'].get('source'),
         "storage": dv['spec'].get('storage'),
