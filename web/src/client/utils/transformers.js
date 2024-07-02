@@ -7,6 +7,7 @@ export const transformVms = (fetched) => {
   const transform = (item) => {
     return {
       name: item.name,
+      namespace: item.namespace,
       os: item.os,
       cpu: item.cpu,
       memory: item.memory,
