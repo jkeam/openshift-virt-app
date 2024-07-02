@@ -94,3 +94,15 @@ export const transformNetworks = (fetched) => {
   }
   return fetchedInterfaces;
 };
+
+export const transformVmnamespaces = (fetched) => {
+  if (!fetched) {
+    return [];
+  }
+
+  const fetchedVmnamespaces = [];
+  for (const vm of fetched) {
+    fetchedVmnamespaces.push(vm['namespace']);
+  }
+  return fetchedVmnamespaces;
+};

@@ -15,3 +15,9 @@ export const fetchStorages = async() => {
   const resp = await response.json();
   return resp['storages'];
 }
+
+export const fetchVmnamespaces = async() => {
+  const response = await fetch('/api/vmnamespaces');
+  const resp = await response.json();
+  return resp['vmnamespaces'];
+}

@@ -6,8 +6,8 @@ import Header from './components/nav/Header';
 import ContentSkip from './components/nav/ContentSkip';
 import Title from './components/common/Title';
 import "@patternfly/react-core/dist/styles/base.css";
-import './fonts.css'
-import './App.css'
+import './fonts.css';
+import './App.css';
 
 function App({ children, title, subtitle }) {
   const pageId = 'main-content';
