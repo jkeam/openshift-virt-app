@@ -40,3 +40,8 @@ cd web
 cd api
 ./build.sh
 ```
+
+## Links
+
+1. [PatternFly Docs](https://www.patternfly.org/topology/getting-started)
+2. [Python Kube Client](https://github.com/kubernetes-client/python)
