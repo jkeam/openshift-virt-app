@@ -7,7 +7,7 @@ from sys import stdout
 from logging import getLogger, DEBUG, StreamHandler, Formatter
 
 # setup app
-app = FastAPI()
+app = FastAPI(title="Virt API", summary="OCP Virt API", description="OCP Virt API")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -44,6 +44,14 @@ def fetch_pods(namespace:str) -> list[dict[str, str]]:
         "phase": pod.status.phase,
         "ip": pod.status.pod_ip
     }, pod_list.items))
+
+def fetch_vmnamespaces() -> list[dict[str, str]]:
+    logger.info("fetch_vmnamespaces")
+    api = client.CustomObjectsApi()
+    instances = api.list_cluster_custom_object(group="kubevirt.io", version="v1", plural="virtualmachineinstances")
+    return list(map(lambda instance: {
+        "namespace": instance['metadata']['namespace']
+    }, instances['items']))
 
 def fetch_vms() -> list[dict[str, str]]:
     logger.info("fetch_vms")
@@ -120,6 +128,10 @@ def get_pods():
 @app.get("/vms")
 def get_vms():
     return {"vms": fetch_vms()}
+
+@app.get("/vmnamespaces")
+def get_vms():
+    return {"vmnamespaces": fetch_vmnamespaces()}
 
 @app.get("/nodes")
 def get_nodes():
