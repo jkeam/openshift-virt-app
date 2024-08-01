@@ -25,7 +25,7 @@ cd api
 PYTHON_ENV=test python ./main.py
 ```
 
-## Build for Deployment
+## Build
 
 ### Frontend
 
@@ -39,6 +39,16 @@ cd web
 ```shell
 cd api
 ./build.sh
+```
+
+## Deploy
+
+```shell
+# will deploy into viewvirt unless you update kustomization.yaml and namespace.yaml
+oc apply -k ./openshift
+
+# delete
+# oc delete -k ./openshift
 ```
 
 ## Links
