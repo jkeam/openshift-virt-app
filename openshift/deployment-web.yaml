@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ocp-virt-app-web
-  namespace: jkeam
   labels:
     app: ocp-virt-app-web
 spec:
@@ -50,7 +49,6 @@ metadata:
   labels:
     app: ocp-virt-app-web
   name: ocp-virt-app-web
-  namespace: jkeam
 spec:
   ports:
   - name: 3000-3000
@@ -66,7 +64,6 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: ocp-virt-app-web
-  namespace: jkeam
 spec:
   port:
     targetPort: 3000
