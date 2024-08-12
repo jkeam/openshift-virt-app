@@ -133,7 +133,7 @@ def get_vms():
     return {"vms": fetch_vms()}
 
 @app.get("/vmnamespaces")
-def get_vms():
+def get_vmnamespaces():
     return {"vmnamespaces": fetch_vmnamespaces()}
 
 @app.get("/nodes")
