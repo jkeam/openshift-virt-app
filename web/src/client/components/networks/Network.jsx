@@ -29,7 +29,7 @@ export default function Network() {
   };
 
   return (
-    <PageSection>
+    <PageSection hasBodyWrapper={false}>
       <BasicTable caption="" data={interfaces} rows={rows} cols={cols} />
     </PageSection>
   );

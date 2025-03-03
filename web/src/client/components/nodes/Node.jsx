@@ -28,7 +28,7 @@ export default function Node() {
   };
 
   return (
-    <PageSection>
+    <PageSection hasBodyWrapper={false}>
       <BasicTable caption="" data={nodes} rows={rows} cols={cols} />
     </PageSection>
   );

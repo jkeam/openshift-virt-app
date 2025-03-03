@@ -62,12 +62,19 @@ export default function Vm() {
   };
 
   return (
-    <PageSection>
+    <PageSection hasBodyWrapper={false}>
       <Panel>
         <PanelMain>
           <PanelMainBody>
             Namespace: &nbsp;
-            <Select isOpen={isNamespaceSelectOpen} selected={selectedNamespace} onSelect={onSelect} onOpenChange={isOpen => setNamespaceSelectIsOpen(isOpen)} toggle={toggle} shouldFocusToggleOnSelect>
+            <Select
+              isOpen={isNamespaceSelectOpen}
+              onOpenChange={isOpen => setNamespaceSelectIsOpen(isOpen)}
+              toggle={toggle}
+              onSelect={onSelect}
+              selected={selectedNamespace}
+              shouldFocusToggleOnSelect
+            >
               <SelectList>
                 {vmnamespaces.map(v => <SelectOption value={v} key={v}>{v}</SelectOption>)}
               </SelectList>

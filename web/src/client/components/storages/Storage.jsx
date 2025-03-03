@@ -29,7 +29,7 @@ export default function Storage() {
   };
 
   return (
-    <PageSection>
+    <PageSection hasBodyWrapper={false}>
       <BasicTable caption="" data={storages} rows={rows} cols={cols} />
     </PageSection>
   );

@@ -13,7 +13,7 @@ export default function BasicTable({ caption, data, rows, cols }) {
   return (
     <React.Fragment>
       <PTable aria-label="Basic table">
-        <Caption>{caption}</Caption>
+        { caption && <Caption>{caption}</Caption> }
         <Thead>
           <Tr>
             { (cols || []).map((item, i) => (<Th key={i}>{item}</Th>)) }

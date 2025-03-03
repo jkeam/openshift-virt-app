@@ -2,7 +2,7 @@ import { PageSection } from '@patternfly/react-core';
 
 export default function Home() {
   return (
-    <PageSection>
+    <PageSection hasBodyWrapper={false}>
       Welcome!  Take a look around.
     </PageSection>
   );

@@ -17,7 +17,7 @@ function App({ children, title, subtitle }) {
   const titleComponent = <Title value={title} subtitle={subtitle} />;
   return (
     <Page
-      header={header}
+      masthead={header}
       sidebar={sidebar}
       isManagedSidebar
       skipToContent={pageSkipToContent}
