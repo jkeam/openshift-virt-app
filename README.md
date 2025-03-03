@@ -2,6 +2,8 @@
 
 Viewer for OpenShift Virt.
 
+Deprecated in favor of [ViewVirt](https://github.com/jkeam/viewvirt).
+
 ## Development
 
 ### Frontend
